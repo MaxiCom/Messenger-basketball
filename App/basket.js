@@ -36,6 +36,9 @@ var highScore = 0;
 var oldScore = 0;
 var score = 0;
 
+// Futur keyDown function
+var keyDown;
+
 // Velocity
 var vUp = -37;
 var vRight = -5;
@@ -120,8 +123,8 @@ function drawScores(){
 	requestAnimationFrame(game);
 	ctx.clearRect(0, 0, W, H);
 
-	// keyDown managing
-	$(document).keydown(function(event) {
+	// Manage key down
+	keyDown = function keyDown(event) {
 		if (!leftThrow && !rightThrow && !upThrow) {
 			oldScore = score;
 			throwSound.play();
@@ -133,7 +136,7 @@ function drawScores(){
 			else if (event.which == 37) 
 				rightThrow = 1;
 		}
-	});
+	};
 
 	// Throw mouvement managing
 	if (upThrow || rightThrow || leftThrow) {
@@ -152,18 +155,18 @@ function drawScores(){
 	// Rim mouvement
 	if (score >= 0) {
 		if (xAxis + rimX <= W - rimImg.width + 6 && direction == "Right") {
-			if (score >= 10 && score < 20)
+			if (score >= 2 && score < 5)
 				xAxis++;
-			else if (score >= 20)
+			else if (score >= 5)
 				xAxis += 2;
 		}
 		else if (xAxis + rimX - 6 > W - rimImg.width)
 			direction = "Left";
 
 		if (xAxis + rimX > -5 && direction == "Left") {
-			if (score >= 10 && score < 20)
+			if (score >= 2 && score < 5)
 				xAxis--;
-			else if (score >= 20)
+			else if (score >= 5)
 				xAxis -= 2;
 		}
 		else if (xAxis + rimX < -4)

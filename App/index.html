@@ -7,21 +7,18 @@
 		<style type="text/css">
 			body, html {
 				margin: 0;
-			} img, audio {
+			} img {
 				display: none;
 			}
 		</style>
 	</head>
-	<body>
+	<body onkeydown="keyDown(event);">
 		<!-- Ressources -->
 		<img id="ballImg" src="images/basket_ball.png"/>
 		<img id="rimImg" src="images/basket_rim.jpg"/>
-		
+
 		<canvas id="canvas"></canvas>
 
-		<script  src="https://code.jquery.com/jquery-3.1.0.min.js"
-					  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-					  crossorigin="anonymous"></script>
 		<script type="text/javascript" src="basket.js"></script>
 	</body>
 </html>
