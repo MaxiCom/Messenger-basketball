@@ -60,6 +60,18 @@ function drawField(){
 			ctx.fillStyle = "#FFFFFF";
 		ctx.fillRect(rimX + 105 + xAxis, rimY + 199, 162, 9);
 	}
+
+	if (debug == 1) {
+		ctx.textAlign = "start";
+		ctx.fillStyle = "Black";
+		ctx.font = "20px Arial";
+		
+		ctx.fillText("Ball x: " + ballX, 10, 20);
+		ctx.fillText("Ball y: " + ballY, 10, 40);
+
+		ctx.fillText("Rim x: " + (rimX + xAxis), 10, 80);
+		ctx.fillText("Rim y: " + rimY, 10, 100);
+	}
 }
 
 function drawScores(){
@@ -123,17 +135,15 @@ function drawScores(){
 
 	// keyDown managing
 	$(document).keydown(function(e) {
-		if (e.which == 38 && leftThrow != 1 && rightThrow != 1) {
-			upThrow = 1;
+		if (!leftThrow && !rightThrow && !upThrow) {
 			oldScore = score;
-		}
-		else if (e.which == 39 && upThrow != 1 && rightThrow != 1){
-			leftThrow = 1;
-			oldScore = score;
-		}
-		else if (e.which == 37 && leftThrow != 1 && upThrow != 1) {
-			rightThrow = 1;
-			oldScore = score;
+
+			if (e.which == 38)
+				upThrow = 1;
+			else if (e.which == 39)
+				leftThrow = 1;
+			else if (e.which == 37) 
+				rightThrow = 1;
 		}
 	});
 
