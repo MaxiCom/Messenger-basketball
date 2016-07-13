@@ -11,6 +11,11 @@ var ballImg = document.getElementById('ballImg');
 var ballX = W / 2 - ballImg.width / 2;
 var ballY = H - ballImg.height - 30;
 
+// Audio
+var throwSound = new Audio("sounds/throw.wav");
+var failSound = new Audio("sounds/fail.wav");
+var winSound = new Audio("sounds/win.wav");
+
 // current ball throw
 var upThrow = 0;
 var leftThrow = 0;
@@ -39,7 +44,7 @@ var vLeft = 5;
 // Gravity
 var gravity = 1;
 
-// DebugMode
+// Debug mode
 var debug = 0;
 
 function drawField(){
@@ -93,24 +98,56 @@ function drawScores(){
 (function game(){
 	function resetGravity() {
 		vUp = -37;
-		ballX = W / 2 - ballImg.width / 2;;
+		ballX = W / 2 - ballImg.width / 2;
 		ballY = H - ballImg.height - 30;
 	}
+
 	function resetThrows() {
 		upThrow = 0;
 		leftThrow = 0;
 		rightThrow = 0;
 	}
+
 	function resetGame() {
 		if (score > highScore)
 			highScore = score;
 		score = 0;
 		xAxis = 0;
 		direction = "Right";
+		failSound.play();
 	}
 
 	requestAnimationFrame(game);
 	ctx.clearRect(0, 0, W, H);
+
+	// keyDown managing
+	$(document).keydown(function(event) {
+		if (!leftThrow && !rightThrow && !upThrow) {
+			oldScore = score;
+			throwSound.play();
+
+			if (event.which == 38)
+				upThrow = 1;
+			else if (event.which == 39)
+				leftThrow = 1;
+			else if (event.which == 37) 
+				rightThrow = 1;
+		}
+	});
+
+	// Throw mouvement managing
+	if (upThrow || rightThrow || leftThrow) {
+		vUp += gravity;
+		ballY += vUp;
+		
+		if (rightThrow) 
+			ballX += vRight;
+		if (leftThrow) 
+			ballX += vLeft;
+	}
+
+	if (ballY < rimY)
+		higherThanRim = 1;
 
 	// Rim mouvement
 	if (score >= 0) {
@@ -133,39 +170,13 @@ function drawScores(){
 			direction = "Right";
 	}
 
-	// keyDown managing
-	$(document).keydown(function(e) {
-		if (!leftThrow && !rightThrow && !upThrow) {
-			oldScore = score;
-
-			if (e.which == 38)
-				upThrow = 1;
-			else if (e.which == 39)
-				leftThrow = 1;
-			else if (e.which == 37) 
-				rightThrow = 1;
-		}
-	});
-
-	// Throw managing
-	if (upThrow || rightThrow || leftThrow) {
-		vUp += gravity;
-		ballY += vUp;
-		
-		if (rightThrow) 
-			ballX += vRight;
-		if (leftThrow) 
-			ballX += vLeft;
-	}
-
-	if (ballY < rimY)
-		higherThanRim = 1;
 	if (higherThanRim && (ballY > rimY + 220 && ballY < rimY + 250) && 
-		ballX > rimX + xAxis + 50 && ballX < rimX + xAxis + 200) 
+		ballX > rimX + xAxis + 50 && ballX < rimX + xAxis + 200) {
+			winSound.play();
 			score++;
+		}
 
-
-	if (ballY - 2000 > H) {
+	if (ballY > H + 1000) {
 		if (oldScore == score) 
 			resetGame();
 		resetThrows();

@@ -1,14 +1,27 @@
-<head>
-	<meta charset="utf-8">
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta author="Maxime Morlet"/>
 
-	<title>Basket</title>
-</head>
-<body style="margin: 0;">
-	<img id="ballImg" src="basket.png" style="display: none;">
-	<img id="rimImg" src="basket_rim.jpg" style="display:none;">
-	<canvas id="canvas"></canvas>
-	<script  src="https://code.jquery.com/jquery-3.1.0.min.js"
-				  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-				  crossorigin="anonymous"></script>
-	<script type="text/javascript" src="basket.js"></script>
-</body>
+		<title>Basket</title>
+		<style type="text/css">
+			body, html {
+				margin: 0;
+			} img, audio {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Ressources -->
+		<img id="ballImg" src="images/basket_ball.png"/>
+		<img id="rimImg" src="images/basket_rim.jpg"/>
+		
+		<canvas id="canvas"></canvas>
+
+		<script  src="https://code.jquery.com/jquery-3.1.0.min.js"
+					  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+					  crossorigin="anonymous"></script>
+		<script type="text/javascript" src="basket.js"></script>
+	</body>
+</html>
