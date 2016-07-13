@@ -36,8 +36,9 @@ var highScore = 0;
 var oldScore = 0;
 var score = 0;
 
-// Futur keyDown function
+// Futur functions
 var keyDown;
+var resizeCanvas;
 
 // Velocity
 var vUp = -37;
@@ -122,6 +123,18 @@ function drawScores(){
 
 	requestAnimationFrame(game);
 	ctx.clearRect(0, 0, W, H);
+
+	// Manage resizing
+	resizeCanvas = function resizeCanvas() {
+		W = canvas.width = window.innerWidth;
+		H = canvas.height = window.innerHeight;
+
+		ballX = W / 2 - ballImg.width / 2;
+		ballY = H - ballImg.height - 30;
+
+		rimX = W / 2 - rimImg.width / 2;
+		rimY = H / 2 - rimImg.height - 90;
+	}
 
 	// Manage key down
 	keyDown = function keyDown(event) {
