@@ -3,6 +3,7 @@
 Ma version du jeu de basket de messenger sur navigateur.
 
     Langage: html / css / javascript
+    Aucune lib utilisée
 
 # Screenshot 
 
