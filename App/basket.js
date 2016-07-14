@@ -36,7 +36,7 @@ var highScore = 0;
 var oldScore = 0;
 var score = 0;
 
-// Futur functions
+// Future functions
 var keyDown;
 var resizeCanvas;
 
