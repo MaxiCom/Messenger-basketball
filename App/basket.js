@@ -138,7 +138,8 @@ function drawScores(){
 
 	// Manage key down
 	keyDown = function keyDown(event) {
-		if (!leftThrow && !rightThrow && !upThrow) {
+		if (!leftThrow && !rightThrow && !upThrow &&
+			(event.which == 37 || event.which == 38 || event.which == 39)) {
 			oldScore = score;
 			throwSound.play();
 
