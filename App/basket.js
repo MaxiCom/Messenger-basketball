@@ -10,6 +10,8 @@ var H = canvas.height = window.innerHeight;
 var ballImg = document.getElementById('ballImg');
 var ballX = W / 2 - ballImg.width / 2;
 var ballY = H - ballImg.height - 30;
+var ballWidth = ballImg.width;
+var ballHeight = ballImg.height;
 
 // Audio
 var throwSound = new Audio("sounds/throw.wav");
@@ -49,7 +51,7 @@ var vLeft = 5;
 var gravity = 1;
 
 // Debug mode
-var debug = 0;
+var debug = 1;
 
 function drawField(){
 	// Floor
@@ -60,7 +62,7 @@ function drawField(){
 	ctx.drawImage(rimImg, rimX + xAxis, rimY);
 
 	// Ball
-	ctx.drawImage(ballImg, ballX, ballY);
+	ctx.drawImage(ballImg, ballX + ((ballImg.width - ballWidth) / 2), ballY, ballWidth, ballHeight);
 
 	// Fake rim bar
 	if ((upThrow || leftThrow || rightThrow) && higherThanRim) {
@@ -112,6 +114,11 @@ function drawScores(){
 		rightThrow = 0;
 	}
 
+	function resetBallSize() {
+		ballWidth = ballImg.width;
+		ballHeight = ballImg.height;
+	}
+
 	function resetGame() {
 		if (score > highScore)
 			highScore = score;
@@ -154,6 +161,10 @@ function drawScores(){
 
 	// Throw mouvement managing
 	if (upThrow || rightThrow || leftThrow) {
+		if (!higherThanRim) {
+			ballWidth -= 1.2;
+			ballHeight -= 1.2;
+		}
 		vUp += gravity;
 		ballY += vUp;
 		
@@ -198,6 +209,7 @@ function drawScores(){
 			resetGame();
 		resetThrows();
 		resetGravity();
+		resetBallSize();
 		higherThanRim = 0;
 	}
 
