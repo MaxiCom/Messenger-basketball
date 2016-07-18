@@ -60,6 +60,8 @@ $(document).ready(function() {
 		ctx.fillRect(0, H - 80, W, 80);
 
 		// Rim
+		if (rimY < 20)
+			rimY = 20;
 		ctx.drawImage(rimImg, rimX + xAxis, rimY);
 
 		// Ball
