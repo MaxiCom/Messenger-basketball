@@ -44,7 +44,7 @@ $(document).ready(function() {
 	var resizeCanvas;
 
 	// Velocity
-	var vUp = -37;
+	var vUp = -20 - (H / 50);
 	var vRight = -5;
 	var vLeft = 5;
 
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
 	(function game(){
 		function resetGravity() {
-			vUp = -37;
+			vUp =  -20 - (H / 50);
 			ballX = W / 2 - ballImg.width / 2;
 			ballY = H - ballImg.height - 30;
 		}
@@ -144,6 +144,8 @@ $(document).ready(function() {
 
 			rimX = W / 2 - rimImg.width / 2;
 			rimY = H / 2 - rimImg.height - 90;
+
+			vUp = -20 - (H / 50);
 		});
 
 		// Manage key down
