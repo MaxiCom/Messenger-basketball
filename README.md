@@ -2,8 +2,6 @@
 
 Ma version du jeu de basket de messenger sur navigateur.
 
-Lien: http://maxime-morlet.hostei.com/messenger-basketball/
-
     Langage: html / css / javascript
 
 # Screenshot 
