@@ -52,7 +52,7 @@ $(document).ready(function() {
 	var gravity = 1;
 
 	// Debug mode
-	var debug = 1;
+	var debug = 0;
 
 	function drawField(){
 		// Floor
