@@ -15,9 +15,9 @@ $(document).ready(function() {
 	var ballHeight = ballImg.height;
 
 	// Audio
-	var throwSound = new Audio("sounds/throw.wav");
-	var failSound = new Audio("sounds/fail.wav");
-	var winSound = new Audio("sounds/win.wav");
+	var throwSound = new Audio("resources/sounds/throw.wav");
+	var failSound = new Audio("resources/sounds/fail.wav");
+	var winSound = new Audio("resources/sounds/win.wav");
 
 	// current ball throw
 	var upThrow = 0;
@@ -52,7 +52,7 @@ $(document).ready(function() {
 	var gravity = 1;
 
 	// Debug mode
-	var debug = 0;
+	var debug = 1;
 
 	function drawField(){
 		// Floor
@@ -206,7 +206,8 @@ $(document).ready(function() {
 		if (higherThanRim && (ballY > rimY + 220 && ballY < rimY + 250) && 
 			ballX > rimX + xAxis + 50 && ballX < rimX + xAxis + 200) {
 				winSound.play();
-				score++;
+				if (oldScore == score)
+					score++;
 			}
 
 		if (ballY > H + 1000) {
