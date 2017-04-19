@@ -2,7 +2,7 @@
 
 Ma version du jeu de basket de messenger sur navigateur.
 
-Lien: https://Maxime-Morlet.fr/Messenger_Basketball/
+Lien: https://MaxiCom.pro/Messenger_Basketball/
 
     Langages: html / css / javascript
 
